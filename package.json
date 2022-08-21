@@ -1,0 +1,30 @@
+{
+  "name": "total-profile-generator",
+  "version": "1.0.0",
+  "description": "CLI HTML profile generator",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Myajewell/Total-Profile-Generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Myajewell/Total-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/Myajewell/Total-Profile-Generator#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  },
+  "devDependencies": {
+    "jest": "^28.1.3"
+  }
+}
