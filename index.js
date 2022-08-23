@@ -3,13 +3,13 @@ const fs = require('fs');
 const Manager = require('./lib/Manager.js');
 const Engineer = require('./lib/Engineer.js');
 const Intern = require('./lib/Intern.js');
-const generateSite = require('./src/generate-site');
+const generatesite = require('./src/generate-site');
 const path = require('path');
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const pathOutput = path.join(OUTPUT_DIR, "team.html");
 const teamMembers = [];
 // inquirer.prompt will prompt the information for the Manager.
-const managerPromt = () => {
+const managerPrompt = () => {
     return inquirer.prompt ( [
         {
             type: 'input',
@@ -243,7 +243,7 @@ const buildTeam = () => {
     if(!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR)
     }
-    fs.writeFile(pathOutput, generateSite(teamMembers), 'utf-8');
+    fs.writeFileSync(pathOutput, generatesite(teamMembers), 'utf-8');
 }
 
-managerPromt();
+managerPrompt();
