@@ -3,9 +3,10 @@ const fs = require('fs');
 const Manager = require('./lib/Manager.js');
 const Engineer = require('./lib/Engineer.js');
 const Intern = require('./lib/Intern.js');
+const generateSite = require('./src/generate-site');
 const path = require('path');
-path.output('sample');
-path.dirname('');
+const OUTPUT_DIR = path.resolve(__dirname, "output");
+const pathOutput = path.join(OUTPUT_DIR, "team.html");
 const teamMembers = [];
 // inquirer.prompt will prompt the information for the Manager.
 const managerPromt = () => {
@@ -70,9 +71,9 @@ const managerPromt = () => {
 
     ]).then(answers => {
         console.log(answers);
-        const manager = new Manager(answers.name, answers.id, answers.email, ansers.phone);
+        const manager = new Manager(answers.name, answers.id, answers.email, answers.phone);
         teamMembers.push(manager);
-        promptMenue();
+        promptmenue();
     })
 
 };
@@ -97,8 +98,7 @@ return inquirer.prompt([
         case "Add Intern":
           promptIntern();
           break;
-        default:
-          buildTeam();
+        default: buildTeam();
       }
 })};
 
@@ -237,13 +237,13 @@ const promptIntern = () => {
  })
 };
 // creating output directory if the path doesnt exist.
-const builTeam = () => {
-    consosle.log('Finished building my team.');
+const buildTeam = () => {
+    console.log('Finished building my team.');
 
-    if(!fs.existsSync(output_dir)) {
-        fs.mkdirSync(output_dir)
+    if(!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR)
     }
     fs.writeFile(pathOutput, generateSite(teamMembers), 'utf-8');
 }
 
-promptManager();
+managerPromt();
