@@ -26,7 +26,7 @@ const managerPromt = () => {
     },
     {
         type: 'input',
-        id: 'employee ID',
+        name    : 'employee ID',
         message: 'Please enter your employee ID.',
         validate(value) {
             const pass = value.match(
@@ -41,7 +41,7 @@ const managerPromt = () => {
 },
 {
     type: 'input',
-    email: 'email address',
+    name: 'email address',
     message: 'Please enter your email address',
     validate: emailInput => {
         if(emailInput) {
@@ -55,7 +55,7 @@ const managerPromt = () => {
 },
 {
     type: 'input',
-    phone: 'office phone',
+    name: 'office phone',
     message: 'Please enter your office phone number',
     validate: officePhone => {
         if(officePhone) {
@@ -105,7 +105,8 @@ return inquirer.prompt([
 // inquirer prompts if the Engineer is selected.
 const promptEngineer = () => {
     console.log('Add Engineer');
-    return inquirer.prompt([{
+    return inquirer.prompt([
+    {
         type: 'input',
         name: 'name',
         message: 'Please enter the first and last name of the Engineer.',
@@ -117,5 +118,132 @@ const promptEngineer = () => {
             }
             
         }
-    }])
+    },
+        {
+            type: 'input',
+            name: 'id',
+            message: 'Please your employee ID.',
+            validate: id => {
+                if(id) {
+                    return true;
+                } else {
+                    console.log('Please enter a valid ID.');
+                }
+                
+            }
+
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Please enter your email address.',
+        validate: emailInput => {
+            if(emailInput) {
+                return true;
+            } else {
+                console.log('Please enter a valid email.');
+            }
+            
+        }
+
+}, 
+{
+    type: 'input',
+    name: 'github',
+    message: 'Please enter your GitHub username.',
+    validate: gitHubUser => {
+        if(gitHubUser) {
+            return true;
+        } else {
+            console.log('Please enter a valid username.');
+        }
+        
+    }
+
+    }
+ ]).then(answers => {
+    console.log(answers)
+    const engineer = new Engineer(answers.name, answers.id, answers.email, answers.gitHubUser)
+    teamMembers.push(Engineer);
+    promptMenue();
+ })
+
+};
+// inquirer prompts if the Intern is selected.
+const promptIntern = () => {
+    console.log('Add Intern');
+    return inquirer.prompt([
+    {
+        type: 'input',
+        name: 'name',
+        message: 'Please enter the first and last name of the Intern.',
+        validate: internName => {
+            if(internName) {
+                return true;
+            } else {
+                console.log('Please enter a valid name.');
+            }
+            
+        }
+    },
+        {
+            type: 'input',
+            name: 'id',
+            message: 'Please your employee ID.',
+            validate: id => {
+                if(id) {
+                    return true;
+                } else {
+                    console.log('Please enter a valid ID.');
+                }
+                
+            }
+
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Please enter your email address.',
+        validate: emailInput => {
+            if(emailInput) {
+                return true;
+            } else {
+                console.log('Please enter a valid email.');
+            }
+            
+        }
+
+}, 
+{
+    type: 'input',
+    name: 'school',
+    message: 'Please enter the name of the school.',
+    validate: internSchool => {
+        if(internSchool) {
+            return true;
+        } else {
+            console.log('Please enter a valid school.');
+        }
+        
+    }
+
+    }
+    // takes the user back to the main menue.
+ ]).then(answers => {
+    console.log(answers)
+    const Intern = new Intern (answers.name, answers.id, answers.email, answers.internSchool)
+    teamMembers.push(Intern);
+    promptMenue();
+ })
+};
+// creating output directory if the path doesnt exist.
+const builTeam = () => {
+    consosle.log('Finished building my team.');
+
+    if(!fs.existsSync(output_dir)) {
+        fs.mkdirSync(output_dir)
+    }
+    fs.writeFile(pathOutput, generateSite(teamMembers), 'utf-8');
 }
+
+promptManager();
