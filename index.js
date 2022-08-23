@@ -7,7 +7,7 @@ const path = require('path');
 path.output('sample');
 path.dirname('');
 const teamMembers = [];
-
+// inquirer.prompt will prompt the information for the Manager.
 const managerPromt = () => {
     return inquirer.prompt ( [
         {
@@ -76,7 +76,7 @@ const managerPromt = () => {
     })
 
 };
-
+// use inquirer.prompt to prompt a menue to select either the intern or, engineer or finish biulding the team.
 const promptmenue = () => {
 return inquirer.prompt([
     {
@@ -88,6 +88,34 @@ return inquirer.prompt([
         'Intern',
         'Finish building my team',
     ]
-    }]) 
-    .then(unrtChoice => )
+    }]) .then(userChoice => {
+    // use switch funtion to prompt based on the user's choice. w3schools used to help with switch statement syntax.
+    switch(userChoice.menue) {
+        case "Add Engineer":
+          promptEngineer();
+          break;
+        case "Add Intern":
+          promptIntern();
+          break;
+        default:
+          buildTeam();
+      }
+})};
+
+// inquirer prompts if the Engineer is selected.
+const promptEngineer = () => {
+    console.log('Add Engineer');
+    return inquirer.prompt([{
+        type: 'input',
+        name: 'name',
+        message: 'Please enter the first and last name of the Engineer.',
+        validate: engineerName => {
+            if(engineerName) {
+                return true;
+            } else {
+                console.log('Please enter a valid name.');
+            }
+            
+        }
+    }])
 }
