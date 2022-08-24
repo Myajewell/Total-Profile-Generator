@@ -20,3 +20,4 @@ The htmlk profile generator lets the user enter in information about thier emplo
 * Run Node index.js and follow prompts.
 
 # Video Walkthrough
+[Video](https://drive.google.com/file/d/18Pf2IMaeEy6CDmqW7o451XvAQbDvcr7M/view)
