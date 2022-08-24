@@ -236,14 +236,4 @@ const promptIntern = () => {
     promptMenue();
  })
 };
-// creating output directory if the path doesnt exist.
-const buildTeam = () => {
-    console.log('Finished building my team.');
-
-    if(!fs.existsSync(OUTPUT_DIR)) {
-        fs.mkdirSync(OUTPUT_DIR)
-    }
-    fs.writeFileSync(pathOutput, generatesite(teamMembers), 'utf-8');
-}
-
 managerPrompt();
